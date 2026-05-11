@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>ACTIVITY 7 - Pagination</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#e66400;
+    color:white;
+    overflow:hidden;
+}
+
+
+.page{
+    display:none;
+    width:100%;
+    height:100vh;
+}
+
+.active{
+    display:flex;
+}
+
+
+#page1{
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    background:#03003d;
+    padding:20px 20px 100px;
+}
+
+#page1 h1{
+    font-size:20px;
+    margin-top: 23px;
+    text-align:center;
+}
+
+video{
+    width:100%;
+    max-width:700px;
+    border-radius:15px;
+}
+
+.video-btn{
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#ffffff;
+    color:black;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+.video-btn:hover{
+    background: #e66400;
+    box-shadow: #ffffff;
+}
+
+
+#page2{
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    background:#cc008f;
+    padding:15px 15px 90px;
+    overflow:auto;
+}
+
+.table-title{
+    width:95%;
+    max-width:1000px;
+    margin-bottom:15px;
+}
+
+.table-title h1{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.table-title h2{
+    text-align:center;
+    font-size:20px;
+}
+
+.table-container{
+    width:95%;
+    max-width:1000px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    color:white;
+    font-size:16px;
+}
+
+th{
+    border:1px solid white;
+    padding:14px 10px;
+    text-align:center;
+}
+
+td{
+    border:1px solid white;
+    padding:14px 10px;
+    line-height:1.4;
+}
+
+td:nth-child(1),
+td:nth-child(2),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6),
+td:nth-child(7){
+    text-align:center;
+}
+
+#page3{
+    justify-content:center;
+    align-items:center;
+    background:#d25f00;
+    transition:0.8s;
+}
+
+.color-btn{
+    padding:20px 40px;
+    border:none;
+    border-radius:12px;
+    background:rgb(58, 0, 18);
+    color:rgb(255, 157, 157);
+    font-size:22px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+
+.pagination-container{
+    position:fixed;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#1b1c1d;
+    padding:10px 15px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    z-index:999;
+}
+
+.pagination-container button{
+    border:1px solid #f96400;
+    background:transparent;
+    color:#ffea00;
+    padding:8px 16px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.pagination-container button:hover{
+    background:#f96400;
+    color:#ffea00;
+}
+
+.page-number{
+    width:35px;
+    height:35px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:1px solid #f96400;
+    border-radius:10px;
+    color:#ffea00;
+    cursor:pointer;
+}
+
+.page-number:hover{
+    background:#9c2200;
+    color:rgb(255, 255, 255);
+}
+
+.active-page{
+    background:#f96400;
+    color:#ffea00;
+    font-weight:bold;
+}
+
+
+@media(max-width:768px){
+
+    #page1 h1{
+        font-size:22px;
+    }
+
+    video{
+        width:95%;
+    }
+
+    table{
+        font-size:11px;
+    }
+
+    th, td{
+        padding:8px;
+    }
+
+    .table-title h1{
+        font-size:28px;
+    }
+
+    .table-title h2{
+        font-size:16px;
+    }
+
+    .pagination-container{
+        transform:translateX(-50%) scale(0.8);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="page active" id="page1">
+
+    <h1>Video Play / Pause Using Button</h1>
+
+    <video id="myVideo">
+       <source src="CAR.mp4" type="video/mp4">
+    </video>
+
+    <button class="video-btn" onclick="toggleVideo()">
+        Play / Pause
+    </button>
+
+</div>
+
+
+<div class="page" id="page2">
+
+    <div class="table-title">
+
+        <h1>Responsive Table</h1>
+
+        <h2>CERTIFICATE OF REGISTRATION</h2>
+
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+                <th>SECTION</th>
+                <th>SUBJECT</th>
+                <th>DESCRIPTION</th>
+                <th>UNIT</th>
+                <th>TIME</th>
+                <th>DAY</th>
+                <th>ROOM</th>
+            </tr>
+
+            <tr>
+                <td>CT 307</td>
+                <td>GD 3214</td>
+                <td>WEB DESIGNING</td>
+                <td>5.00</td>
+                <td>7-12nn/7-9am/1-4pm</td>
+                <td>MT/Th/T</td>
+                <td>AB 3C</td>
+            </tr>
+
+            <tr>
+                <td>CT 308</td>
+                <td>GD 3215</td>
+                <td>MECHANICS OF MATERIALS</td>
+                <td>3.00</td>
+                <td>9-12nn</td>
+                <td>WF</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>CT 309</td>
+                <td>IM 325</td>
+                <td>INDUSTRIAL ORGANIZATION & MANAGEMENT</td>
+                <td>3.00</td>
+                <td>1-4pm</td>
+                <td>M</td>
+                <td>AB CADCAM</td>
+            </tr>
+
+            <tr>
+                <td>CT 310</td>
+                <td>IM 326</td>
+                <td>PERSONNEL ADMINISTRATION</td>
+                <td>3.00</td>
+                <td>1-4pm</td>
+                <td>TH</td>
+                <td>AB CADCAM</td>
+            </tr>
+
+            <tr>
+                <td>CT 311</td>
+                <td>IM 327</td>
+                <td>ORGANIZATIONAL BEHAVIOR & WORK ETHICS</td>
+                <td>3.00</td>
+                <td>1-4pm</td>
+                <td>F</td>
+                <td>AB CADCAM</td>
+            </tr>
+
+            <tr>
+                <td>CT 312</td>
+                <td>IM 328</td>
+                <td>PRODUCT OUTPUT (RESEARCH)</td>
+                <td>3.00</td>
+                <td>1-4pm</td>
+                <td>W</td>
+                <td>AB 3C</td>
+            </tr>
+
+            <tr>
+                <td>CT 313</td>
+                <td>FOLA 2</td>
+                <td>NIHONGO 2 / KOREAN 2 / CHINESE 2</td>
+                <td>3.00</td>
+                <td>9-12nn</td>
+                <td>Th</td>
+                <td>AB 3A</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+<div class="page" id="page3">
+
+    <button class="color-btn"
+        onmouseover="changeColor()"
+        onmouseout="resetColor()">
+
+        See the Magic!
+
+    </button>
+
+</div>
+
+
+<div class="pagination-container">
+
+    <button onclick="previousPage()">← Prev</button>
+
+    <div class="page-number active-page" onclick="showPage(1)">1</div>
+
+    <div class="page-number" onclick="showPage(2)">2</div>
+
+    <div class="page-number" onclick="showPage(3)">3</div>
+
+    <button onclick="nextPage()">Next →</button>
+
+</div>
+
+
+<script>
+
+let current = 1;
+let totalPages = 3;
+
+function updateButtons(){
+
+    let buttons = document.querySelectorAll(".page-number");
+
+    buttons.forEach(btn => {
+        btn.classList.remove("active-page");
+    });
+
+    buttons[current - 1].classList.add("active-page");
+}
+
+function showPage(page){
+
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(p => {
+        p.classList.remove("active");
+    });
+
+    document.getElementById("page" + page)
+    .classList.add("active");
+
+    current = page;
+
+    updateButtons();
+}
+
+function nextPage(){
+
+    current++;
+
+    if(current > totalPages){
+        current = 1;
+    }
+
+    showPage(current);
+}
+
+function previousPage(){
+
+    current--;
+
+    if(current < 1){
+        current = totalPages;
+    }
+
+    showPage(current);
+}
+
+function toggleVideo(){
+
+    let video = document.getElementById("myVideo");
+
+    if(video.paused){
+        video.play();
+    }
+    else{
+        video.pause();
+    }
+}
+
+function changeColor(){
+
+    document.getElementById("page3").style.background =
+    "linear-gradient(to right, #00c6ff, #0072ff)";
+}
+
+function resetColor(){
+
+    document.getElementById("page3").style.background =
+    "#07111f";
+}
+
+</script>
+
+</body>
+</html>

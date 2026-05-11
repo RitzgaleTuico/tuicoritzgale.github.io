@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ACT 4 My Playlist</title>
+
+    <link rel="icon" href="sharky.png" type="image/png">
+
+    <style>
+        body {
+            margin: 0;
+            background: url('surfa.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .playlist-bar {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 15px;
+        }
+
+        .scroll-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            color: #ffffff;
+            font-size: 25px;
+            font-weight: bold;
+            padding-left: 100%;
+            animation: scroll 20s linear infinite;
+            text-shadow:  0 0 20px #060125;
+        }
+
+        .upper-gif {
+            width: 70px;
+            height: 70px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .casette {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 30px;
+        }
+
+        .dancing-gif {
+            width: 200px;
+            height: 200px;
+        }
+
+        .album-box {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            width: 700px;
+            height: 220px;
+            padding: 28px;
+            border-radius: 22px;
+            background: url('humpback.gif') center/cover no-repeat;
+            background-size: cover;
+            background-position: 10% 90%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgb(72, 176, 255);
+            transition: 0.3s ease;
+        }
+
+        .album-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 0;
+        }
+
+        .album-photo,
+        .album-info {
+            position: relative;
+            z-index: 5;
+        }
+
+        .album-box:hover {
+            transform: translateY(-10px);
+            box-shadow:
+                0 0 25px rgba(0, 195, 255, 0.826),
+                0 0 50px rgba(0, 76, 255, 0.584);
+        }
+
+        .album-photo {
+            width: 180px;
+            height: 180px;
+             object-fit: cover;
+              border-radius: 30px;
+              margin-left: 22px;
+        }
+
+        .album-info {
+            flex: 1;
+        }
+
+        .strokes-title {
+            color: white;
+            font-size: 25px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .album-descript {
+            color: #d9d9d9;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        audio {
+            width: 93%;
+            
+        }
+    </style>
+</head>
+
+<body>
+
+   
+    <div class="playlist-bar">
+        <div class="scroll-text">
+
+            <span>𓆝 𓆟 𓆞 𓆝 𓆟𓇼 ⋆.˚ 𓆉 𓆝  𓆡⋆.˚ 𓇼</span>
+            <img src="fish.gif" class="upper-gif">
+            <span>Gale's Surfing Playlist •</span>
+            <img src="fish.gif" class="upper-gif">
+            <span>𓆝 𓆟 𓆞 𓆝 𓆟𓇼 ⋆.˚ 𓆉 𓆝  𓆡⋆.˚ 𓇼</span>
+
+        </div>
+    </div>
+
+    <div class="casette">
+
+        <img class="dancing-gif" src="shark surf.gif">
+
+        <div class="album-box">
+
+            <img class="album-photo" src="mycd.png">
+
+            <div class="album-info">
+
+                <h2 class="strokes-title">The Strokes - The Adults Are Talking</h2>
+
+                <p class="album-descript">
+                    A dreamy collection of surf vibes, ocean nights, and soft indie sounds.
+                </p>
+
+                <audio controls>
+                    <source src="The Strokes - The Adults Are Talking (Official Audio).mp3">
+                </audio>
+
+            </div>
+
+        </div>
+
+        <img class="dancing-gif" src="dog surf.gif">
+
+    </div>
+
+</body>
+</html>

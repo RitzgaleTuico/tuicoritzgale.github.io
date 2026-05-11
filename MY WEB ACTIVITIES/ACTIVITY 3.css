@@ -1,0 +1,119 @@
+
+           .UBERbutton {
+                background-color: #000000;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            } 
+            .UBERbutton:hover {
+                background-color: rgba(11, 11, 11, 0.703);
+                color: white;
+                transition: background-color 0.5s ease;
+            }
+            .Amazonbutton {
+                background-color: rgb(255, 216, 20);
+                border: none;
+                color: rgb(0, 0, 0);
+                padding: 15px 32px;
+                text-align: center;
+                font-size: 16px;
+                width: 200px;
+                margin: 4px 2px;
+                border-radius: 49px;
+                cursor: pointer;
+            }
+            .Amazonbutton:hover {
+                background-color: rgb(222, 190, 35);
+                color: rgb(0, 0, 0);
+                transition: background-color 0.5s ease;
+            }
+            .GitHubbutton {
+                background-color: rgb(46, 164, 79);
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                font-size: 16px;
+                margin: 4px 2px;
+                border-radius: 8px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .GitHubbutton:hover {
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+                transition: box-shadow 0.5s ease;
+            }
+            .BOOTSbutton {
+                background-color: rgb(121, 82, 179);
+                border: none;
+                color: rgb(255, 255, 255);
+                padding: 15px 32px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+                margin: 4px 2px;
+                border-radius: 8px;
+                cursor: pointer;
+            } 
+            .BOOTSbutton:hover {
+                background-color: rgb(75, 44, 124);
+                color: rgb(255, 255, 255);
+                transition: background-color 0.5s ease;
+            }
+            .bootstrapbutton {
+                background-color: rgb(255, 255, 255);
+                border: 1px solid rgb(108, 117, 125);
+                color: rgb(108, 117, 125);
+                padding: 15px 32px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+                margin: 4px 2px;
+                border-radius: 8px;
+                cursor: pointer;
+            } 
+            .bootstrapbutton:hover {
+                background-color: rgb(108, 117, 125);
+                border: 1px solid rgb(108, 117, 125);
+                color: rgb(255, 255, 255);
+                transition: background-color 0.5s ease;
+            }
+            .linkedinbutton {
+                background-color: rgb(10, 102, 194);
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+                margin: 4px 2px;
+                border-radius: 49px;
+                cursor: pointer;
+            }
+            .linkedinbutton:hover {
+                background-color: rgb(19, 82, 146);
+                color: white;
+                transition: background-color 0.5s ease;
+            }
+            .linkedin2button {
+                background-color: rgb(255, 255, 255);
+                border: 1px solid rgb(10, 102, 194);
+                color: rgb(10, 102, 194);
+                padding: 15px 32px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+                margin: 4px 2px;
+                border-radius: 49px;
+                cursor: pointer;
+            }
+            .linkedin2button:hover {
+                background-color: rgba(143, 198, 253, 0.218);
+                border: 1.5px solid rgb(10, 102, 194);
+                color: rgb(10, 102, 194);
+            }
+         
