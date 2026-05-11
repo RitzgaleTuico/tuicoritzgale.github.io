@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>FINAL ACTIVITY - Pagination Compilation </title>
+
+    <link rel="icon" href="sharky.png" type="image/png">
+
+    <link rel="stylesheet" type="text/css" href="ACTIVITY 3.css">
+    <link rel="stylesheet" href="BOWT.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:#ffffff;
+            color:rgb(255, 255, 255);
+            overflow-x:hidden;
+        }
+
+        .page{
+            display:none;
+            min-height:100vh;
+            width:100%;
+        }
+
+
+        #login-screen{
+
+            position:fixed;
+
+            inset:0;
+
+            z-index:9999;
+
+            background-image:url("surfing.png");
+            background-size:cover;
+            background-position:center;
+
+            display:flex;
+            align-items:center;
+            justify-content:flex-start;
+
+            padding-left:70px;
+        }
+
+        #main-content{
+            display:none;
+        }
+
+        .surfbox{
+
+            background: rgba(4, 24, 46, 0.23);
+
+            border:1px solid #a0f5ff;
+
+            border-radius:20px;
+
+            padding:33px;
+
+            width:280px;
+
+            text-align:center;
+
+            box-shadow:0 0 30px #69fff022;
+
+            backdrop-filter: blur(15px);
+
+            transition:0.3s ease;
+        }
+
+        .surfbox:hover{
+
+            transform: translateY(-12px);
+
+            box-shadow: 0 20px 50px rgba(152, 245, 255, 0.553);
+        }
+
+        .surfbox h1{
+
+            font-size:26px;
+
+            margin-top:0;
+            margin-bottom:0px;
+
+            color:white;
+
+            text-shadow:0 0 10px #74b5ff;
+        }
+
+        .surfbox p{
+
+            color:#e0faff;
+
+            font-size:15px;
+
+            margin-top:8px;
+            margin-bottom:20px;
+        }
+
+        .surfbox input{
+
+            width:100%;
+
+            padding:12px 16px;
+
+            margin-bottom:19px;
+
+            border-radius:8px;
+
+            border:1px solid #00e5ff44;
+
+            background:rgb(211, 254, 255);
+
+            color:rgb(0, 39, 81);
+
+            font-size:11px;
+        }
+
+        .surfbox input::placeholder{
+
+            color: rgba(61, 61, 66, 0.736);
+        }
+
+        .surfbox button{
+
+            width:100%;
+
+            padding:12px;
+
+            margin-top:10px;
+
+            background:#00e5ff;
+
+            color:#081c65;
+
+            font-weight:bold;
+
+            font-size:12px;
+
+            border:none;
+
+            border-radius:6px;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .surfbox button:hover{
+
+            background:#ffffff;
+
+            box-shadow:0 0 16px #5bd1ffe0;
+        }
+
+        .surfbox .link{
+
+            margin-top:8px;
+
+            font-size:10px;
+
+            color:#ffffff;
+        }
+
+        .surfbox .link a{
+
+            color:#8df4ff;
+
+            text-decoration:none;
+        }
+
+        .error-msg{
+
+            color:#ff6b6b;
+
+            font-size:12px;
+
+            margin-bottom:10px;
+
+            display:none;
+        }
+
+
+        .pagination-bar{
+
+            position:fixed;
+
+            bottom:10px;
+            left:50%;
+
+            transform:translateX(-50%);
+
+            background:rgba(5,5,16,0.82);
+
+            backdrop-filter:blur(10px);
+
+            border:1px solid #00e5ff22;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            gap:6px;
+
+            padding:6px 10px;
+
+            border-radius:30px;
+
+            z-index:999;
+        }
+
+        .page-btn{
+
+            width:28px;
+            height:28px;
+
+            background:transparent;
+
+            border:1px solid #00e5ff22;
+
+            color:#00e5ff66;
+
+            font-size:11px;
+
+            font-weight:bold;
+
+            border-radius:6px;
+
+            cursor:pointer;
+
+            transition:all 0.3s;
+        }
+
+        .page-btn:hover{
+
+            border-color:#00e5ff;
+
+            color:#00e5ff;
+
+            box-shadow:0 0 8px #00e5ff33;
+        }
+
+        .page-btn.active{
+
+            background:#00e5ff;
+
+            color:#000;
+
+            border-color:#00e5ff;
+
+            box-shadow:0 0 12px #00e5ff66;
+        }
+
+        .prev-next{
+
+            width:auto;
+
+            height:28px;
+
+            padding:0 10px;
+
+            font-size:10px;
+        }
+
+        .page-info{
+
+            font-size:9px;
+
+            color:#777;
+
+            letter-spacing:1px;
+
+            margin:0 5px;
+        }
+
+
+        #page1 {
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url("lonesurf.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .Conquer-left {
+            position: absolute;
+            top: 40%;
+            left: 7%;
+            transform: translateY(-50%);
+            max-width: 420px;
+        }
+
+        .conquer-title {
+            font-family: Georgia, "Times New Roman", serif;
+            font-style: italic;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .conquer-title span {
+            display: block;
+            font-size: 95px;
+        }
+
+        .conquer-title small {
+            display: block;
+            font-size: 73px;
+        }
+
+        .tides-sub {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+            margin-top: 15px;
+        }
+
+        .wave button {
+            padding: 14px 34px;
+            font-size: 15px;
+            border-radius: 6px;
+            background: #00e5ff;
+            color: #00053f;
+            cursor: pointer;
+            transition: 0.28s ease;
+            border:none;
+        }
+
+        .wave button:hover {
+            background: #ffffff;
+            color: #00b8cc;
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px #ffffff8c;
+        }
+
+        .motivation {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            width: 320px;
+            text-align: right;
+        }
+
+        .quote {
+            margin-bottom: 18px;
+            font-size: 15px;
+            line-height: 1.5;
+            opacity: 0.9;
+            font-style: italic;
+            border-right: 3px solid #00e5ff;
+            padding-right: 14px;
+            transition: 0.3s ease;
+        }
+
+        .quote:hover {
+            transform: translateX(-10px);
+            color: #86e7ff;
+            text-shadow: 0 0 10px #56eeff, 0 0 20px #032481;
+            opacity: 1;
+        }
+
+
+        #page2 {
+            background: url('surfa.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .playlist-bar {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 15px;
+        }
+
+        .scroll-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            color: #ffffff;
+            font-size: 25px;
+            font-weight: bold;
+            padding-left: 100%;
+            animation: scroll 20s linear infinite;
+            text-shadow:  0 0 20px #060125;
+        }
+
+        .upper-gif {
+            width: 70px;
+            height: 70px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .casette {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 30px;
+        }
+
+        .dancing-gif {
+            width: 200px;
+            height: 200px;
+        }
+
+        .album-box {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            width: 700px;
+            height: 220px;
+            padding: 28px;
+            border-radius: 22px;
+            background: url('humpback.gif') center/cover no-repeat;
+            background-size: cover;
+            background-position: 10% 90%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgb(72, 176, 255);
+            transition: 0.3s ease;
+        }
+
+        .album-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 0;
+        }
+
+        .album-photo,
+        .album-info {
+            position: relative;
+            z-index: 5;
+        }
+
+        .album-box:hover {
+            transform: translateY(-10px);
+            box-shadow:
+                0 0 25px rgba(0, 195, 255, 0.826),
+                0 0 50px rgba(0, 76, 255, 0.584);
+        }
+
+        .album-photo {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 30px;
+            margin-left: 22px;
+        }
+
+        .strokes-title {
+            color: white;
+            font-size: 25px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .album-descript {
+            color: #d9d9d9;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        audio {
+            width: 93%;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<div id="login-screen">
+
+    <div class="surfbox">
+
+        <h1>AHOY! SURFER</h1>
+
+        <p>Sign in to your account</p>
+
+        <div class="error-msg" id="error-msg">
+            Please fill in all fields.
+        </div>
+
+        <input type="text" id="username" placeholder="Username or Email">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="doLogin()">
+            Surf In
+        </button>
+
+        <div class="link">
+
+            Don't have an account?
+
+            <a href="#">
+                Sign up
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="main-content">
+
+
+    <div class="page" id="page1">
+
+        <div class="Conquer-left">
+
+            <h1 class="conquer-title">
+
+                <span>Conquer</span>
+
+                <small>the Waves</small>
+
+            </h1>
+
+            <p class="tides-sub">
+
+                For those who live between tides and time,
+                where the ocean becomes a rhythm and every
+                wave carries a sense of freedom.
+
+            </p>
+
+            <div class="wave">
+
+                <button>
+                    ride the wave
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="motivation">
+
+            <div class="quote">
+                “The ocean answers what the heart carries”
+            </div>
+
+            <div class="quote">
+                “Life is greater than waves. Conquer it!”
+            </div>
+
+            <div class="quote">
+                “Ride the wave, trust the tide.”
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="page" id="page2">
+
+        <div class="playlist-bar">
+
+            <div class="scroll-text">
+
+                <span>𓆝 𓆟 𓆞 𓆝 𓆟𓇼 ⋆.˚ 𓆉 𓆝  𓆡⋆.˚ 𓇼</span>
+                <img src="fish.gif" class="upper-gif">
+                <span>Gale's Surfing Playlist •</span>
+                <img src="fish.gif" class="upper-gif">
+                <span>𓆝 𓆟 𓆞 𓆝 𓆟𓇼 ⋆.˚ 𓆉 𓆝  𓆡⋆.˚ 𓇼</span>
+
+            </div>
+
+        </div>
+
+        <div class="casette">
+
+            <img class="dancing-gif" src="shark surf.gif">
+
+            <div class="album-box">
+
+                <img class="album-photo" src="mycd.png">
+
+                <div class="album-info">
+
+                    <h2 class="strokes-title">
+                        The Strokes - The Adults Are Talking
+                    </h2>
+
+                    <p class="album-descript">
+                        A dreamy collection of surf vibes, ocean nights, and soft indie sounds.
+                    </p>
+
+                    <audio controls>
+                        <source src="The Strokes - The Adults Are Talking (Official Audio).mp3">
+                    </audio>
+
+                </div>
+
+            </div>
+
+            <img class="dancing-gif" src="dog surf.gif">
+
+        </div>
+
+    </div>
+
+<div class="page" id="page3">
+
+  <style>
+        .MyDisplay{
+            display: grid;
+            grid-template-columns: 30% 30% 30% ;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-right: auto;
+        }
+       .MyDesign{
+            display: grid;
+            grid-template-columns: 35% 65%;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            margin-bottom: auto;
+        }
+        .MyDisplay pre,
+        .MyDesign pre {
+            color: black;  
+        }
+    </style>
+
+    <pre style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;background-color: rgb(16, 0, 86);"> 
+        <center>
+           <span style="color: rgb(251, 205, 243);font-size:45px;">Ritzgale E. Tuico</span> 
+            <span style="color: rgb(184, 230, 255);font-size:40px;"> BSGD 3-B </span>
+           <span style="color: rgb(250, 255, 192);font-size:32px;"> Activity No.2 </span>
+            <span style="color: rgb(254, 215, 122);font-size:24px;"> CSS Basic Buttons</span>
+        </center>
+    </pre>
+
+
+   <div class="MyDisplay">
+        <pre>
+            <center>
+            2.a Uber
+            
+            <button class="UBER">Request now</button>
+            </center>
+        </pre>
+
+        <pre>
+            <center>
+            2.b amazon
+
+            <button class="AMAZON">Add to cart</button>
+            </center>
+        </pre>
+
+        <pre>
+            <center>
+            2.c github
+
+            <button class="GIThub">Sign up</button>
+            </center>
+        </pre>
+    </div>
+
+    <div class="MyDesign">
+        <pre>
+            <center>
+            2.d bootstrap
+
+            <button class="bootstrap">Get started</button><button class="bootstrap-invert">Download</button>
+            </center>
+        </pre>
+
+        <pre>
+            <center>
+            2.elinkedin
+
+            <button class="linkedin">Apply to company website</button><button class="linkedin-invert">Save</button>
+            </center>
+        </pre>
+    </div>
+ 
+</div>
+
+    
+
+    <div class="page" id="page4">
+
+        <pre style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;background-color: rgb(0, 12, 73);background:url(blues.gif
+        );background-size: cover;background-repeat: no-repeat; background-blend-mode:luminosity;"> 
+           
+        <center> 
+            
+           <span style="color: rgb(250, 255, 192);font-size:  40px;">Ritzgale E. Tuico</span> 
+            <span style="color: rgb(254, 215, 122);font-size:37px;"> BSGD 3-B </span>
+           <span style="color:  rgb(254, 215, 122);font-size:  33px;"> Activity No.3 </span>
+            <span style="color:  rgb(184, 230, 255);font-size:  28px;"> CSS HOVER, SHADOW AND TRANSITION</span>
+        </center>
+        </pre>
+
+        <center>
+
+            <button class="UBERbutton"> 
+                Request now
+            </button>
+
+            <button class="Amazonbutton">
+                Add to cart
+            </button>
+
+            <button class="GitHubbutton">
+                Sign up
+            </button>
+
+            <button class="BOOTSbutton">
+                Get started
+            </button>
+
+            <button class="bootstrapbutton">
+                Download
+            </button>
+
+            <button class="linkedinbutton">
+                Apply on company website    
+            </button>
+
+            <button class="linkedin2button">
+                Save
+            </button>
+
+        </center>
+
+    </div>
+   
+
+
+    <div class="pagination-bar">
+
+        <button class="page-btn prev-next" onclick="changePage(-1)">
+            ← Prev
+        </button>
+
+        <button class="page-btn" id="p1" onclick="goTo(1)">
+            1
+        </button>
+
+        <button class="page-btn" id="p2" onclick="goTo(2)">
+            2
+        </button>
+
+        <button class="page-btn" id="p3" onclick="goTo(3)">
+            3
+        </button>
+
+        <button class="page-btn" id="p4" onclick="goTo(4)">
+            4
+        </button>
+
+        <span class="page-info" id="page-info">
+            PAGE 1 / 4
+        </span>
+
+        <button class="page-btn prev-next" onclick="changePage(1)">
+            Next →
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+    function doLogin(){
+
+        const u = document.getElementById('username').value.trim();
+
+        const p = document.getElementById('password').value.trim();
+
+        if(!u || !p){
+
+            document.getElementById('error-msg').style.display = 'block';
+
+            return;
+        }
+
+        document.getElementById('login-screen').style.display = 'none';
+
+        document.getElementById('main-content').style.display = 'block';
+
+        goTo(1);
+    }
+
+    let current = 0;
+
+    function goTo(n){
+
+        const pages = document.querySelectorAll('.page');
+
+        pages.forEach(page => {
+            page.style.display = 'none';
+        });
+
+        const buttons = document.querySelectorAll('.page-btn');
+
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        current = n;
+
+        document.getElementById('page' + current).style.display = 'block';
+
+        document.getElementById('p' + current).classList.add('active');
+
+        document.getElementById('page-info').textContent =
+            'PAGE ' + current + ' / 4';
+
+        window.scrollTo(0,0);
+    }
+
+    function changePage(direction){
+
+        let nextPage = current + direction;
+
+        if(nextPage < 1 || nextPage > 4){
+
+            return;
+        }
+
+        goTo(nextPage);
+    }
+
+</script>
+
+</body>
+
+</html>
